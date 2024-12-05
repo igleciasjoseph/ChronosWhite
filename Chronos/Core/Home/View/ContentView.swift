@@ -20,6 +20,13 @@ struct ContentView: View {
         let transparentAppearence = UITabBarAppearance()
         transparentAppearence.configureWithTransparentBackground()
         UITabBar.appearance().standardAppearance = transparentAppearence
+        
+        for family in UIFont.familyNames {
+            print("Family: \(family)")
+            for font in UIFont.fontNames(forFamilyName: family) {
+                print("Font: \(font)")
+            }
+        }
     }
     
     private var sortedTasks: [IndividualTask] {
@@ -46,8 +53,9 @@ struct ContentView: View {
                         .toolbar(.hidden, for: .tabBar)
                 }
                 .toolbar(.hidden)
-                
-                TabBarView(tabSelection: $tabSelection, tasks: tasks)
+                .overlay(alignment: .bottom) {
+                    TabBarView(tabSelection: $tabSelection, tasks: tasks)
+                }
             }
         }
         .ignoresSafeArea(edges: .bottom)

@@ -9,22 +9,22 @@ import SwiftUI
 
 struct DateHeaderView: View {
     var body: some View {
-        VStack {
+//        VStack {
             // Date
             VStack {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("\(DateFormatter.displayDate.string(from: Date()))")
+                        Text("\(DateFormatter.displayDate.string(from: Date())),")
                         Text(Date.now, format: .dateTime.year())
                     }
                     .foregroundStyle(.black)
-                    .font(.custom("Futura-Medium", size: 20))
+                    .font(.custom("Poppins-Medium", size: 18))
                     
                     Spacer()
                     
                     VStack {
                         Text("\(Date().dayOfWeek())")
-                            .font(.custom("Futura-Medium", size: 28))
+                            .font(.custom("Poppins-Medium", size: 26))
                             .underline(color: Color.gRose)
                     }
                     .foregroundStyle(.black)
@@ -32,12 +32,15 @@ struct DateHeaderView: View {
                 .padding(.horizontal, 10)
                 
                 Line()
-                    .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
+//                    .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
                     .frame(height: 1)
                     .background(.black)
             }
-        }
-        .frame(height: 60)
+            .frame(height: 60)
+            .frame(maxWidth: .infinity)
+            .padding(.top, 5)
+//        }
+//        .frame(height: 60)
     }
 }
 

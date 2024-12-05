@@ -34,7 +34,7 @@ struct DailyTaskView: View {
                 
                 if todaysTasks.isEmpty {
                     Text("No Tasks Today")
-                        .font(.custom("Futura-Medium", size: 14))
+                        .font(.custom("Poppins-Medium", size: 14))
                         .foregroundStyle(.black)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {

@@ -20,12 +20,11 @@ struct TaskItemView: View {
             VStack {
                 Text(task.startTime.hourFormatter())
                     .foregroundStyle(.black)
-                    .fontWeight(.semibold)
-                    .font(.custom("Futura-Medium", size: 11))
+                    .font(.custom("Poppins-Bold", size: 11))
                 
                 Text(task.endTime.hourFormatter())
                     .foregroundStyle(.black)
-                    .font(.custom("Futura-Medium", size: 11))
+                    .font(.custom("Poppins-Medium", size: 11))
             }
             
             Rectangle()
@@ -36,9 +35,9 @@ struct TaskItemView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 8) {
                     Text(task.title)
-                        .font(.custom("Futura-Medium", size: 20))
+                        .font(.custom("Poppins-Medium", size: 20))
                         .foregroundStyle(.black)
-                        .fontWeight(.regular)
+                        .lineLimit(1)
                     
                     Spacer()
                     

@@ -78,7 +78,7 @@ struct AddOverlayView: View {
                     .frame(width: 32)
             }
         }
-        .padding(15)
+        .padding(100)
     }
 }
 

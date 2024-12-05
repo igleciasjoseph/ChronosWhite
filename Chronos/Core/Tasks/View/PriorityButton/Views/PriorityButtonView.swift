@@ -54,7 +54,7 @@ struct PriorityButtonView: View {
                     .frame(width: 20, height: 20)
                     .foregroundColor(.black)
                 Text(priority)
-                    .font(.custom("Futura-Medium", size: 12))
+                    .font(.custom("Poppins-Medium", size: 12))
                     .foregroundColor(.black)
                     .frame(maxWidth: .infinity)
             }

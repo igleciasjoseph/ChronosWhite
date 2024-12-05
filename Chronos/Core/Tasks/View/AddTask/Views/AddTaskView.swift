@@ -57,11 +57,12 @@ struct AddTaskView: View {
             VStack(alignment: .leading) {
                 // Title
                 Text("Task")
-                    .font(.custom("Futura-Medium", size: 20))
+                    .font(.custom("Poppins-Medium", size: 20))
                     .foregroundStyle(.black)
                     .padding(.bottom, 5)
+                
                 TextField("", text: $title, prompt: Text("Title")
-                    .font(.custom("Futura-MediumItalic", size: 14))
+                    .font(.custom("Poppins-MediumItalic", size: 14))
                     .foregroundStyle(.black.opacity(0.8)))
                     .padding(10) // Add padding inside the TextField
                     .background(
@@ -72,7 +73,7 @@ struct AddTaskView: View {
                     .focused($isFocused)
                 
                 TextField("", text: $taskDescription, prompt: Text("Description")
-                    .font(.custom("Futura-MediumItalic", size: 14))
+                    .font(.custom("Poppins-MediumItalic", size: 14))
                     .foregroundStyle(.black.opacity(0.8)))
                     .padding(10) // Add padding inside the TextField
                     .background(
@@ -81,25 +82,26 @@ struct AddTaskView: View {
                     )
                     .foregroundColor(.black)
                     .focused($isFocused)
+                    .lineLimit(5, reservesSpace: true)
             }
             .padding(.bottom)
             
             HStack {
                 
                 Text("Date | Time | Legend")
-                    .font(.custom("Futura-Medium", size: 20))
+                    .font(.custom("Poppins-Medium", size: 20))
                     .foregroundStyle(.black)
                     .padding(.bottom, 5)
             }
             HStack(alignment: .top) {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 10) {
                     HStack {
                         Text(startDate.formattedString())
-                            .font(.custom("Futura-MediumItalic", size: 14))
+                            .font(.custom("Poppins-MediumItalic", size: 14))
                             .foregroundStyle(.black)
                         
                         Image(systemName: "calendar")
-                            .font(.custom("Futura-MediumItalic", size: 14))
+                            .font(.custom("Poppins-MediumItalic", size: 14))
                             .foregroundStyle(.black)
                     }
                     .padding(10)
@@ -120,7 +122,7 @@ struct AddTaskView: View {
                     HStack {
                         
                         Text("\(startTime.hourFormatter())")
-                            .font(.custom("Futura-MediumItalic", size: 14))
+                            .font(.custom("Poppins-MediumItalic", size: 14))
                             .padding(10)
                             .foregroundStyle(.black)
                             .background(.contrastGray)
@@ -134,14 +136,14 @@ struct AddTaskView: View {
                             }
                         
                         Text( "To ")
-                            .font(.custom("Futura-Medium", size: 14))
+                            .font(.custom("Poppins-Medium", size: 14))
                             .foregroundStyle(.black)
                     }
                     
                     HStack {
                         
                         Text("\(endTime.hourFormatter())")
-                            .font(.custom("Futura-MediumItalic", size: 14))
+                            .font(.custom("Poppins-MediumItalic", size: 14))
                             .padding(10)
                             .foregroundStyle(.black)
                             .background(.contrastGray)
@@ -159,10 +161,6 @@ struct AddTaskView: View {
                 Spacer()
                 
                 VStack(alignment: .center, spacing: 0) {
-                    //                    Text("Legend")
-                    //                        .font(.custom("Futura-Medium", size: 20))
-                    //                        .foregroundStyle(.black)
-                    //                        .padding(.bottom, 15)
                     HStack(spacing: 0) {
                         TintColorView(color: .gRose, selectedColor: $tintColor, colorName: "gRose")
                         TintColorView(color: .laurenViolet, selectedColor: $tintColor, colorName: "laurenViolet")
