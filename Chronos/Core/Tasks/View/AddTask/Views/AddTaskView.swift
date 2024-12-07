@@ -71,7 +71,6 @@ struct AddTaskView: View {
                             .fill(.contrastGray) // Fill color
                     )
                     .foregroundColor(.black)
-                    .focused($isFocused)
                     
                     TextField("", text: $taskDescription, prompt: Text("Description")
                         .font(.custom("Poppins-MediumItalic", size: 14))
@@ -208,29 +207,6 @@ struct AddTaskView: View {
             }
         }
         .ignoresSafeArea(.keyboard)
-    }
-    
-    // MARK: - Validation Logic
-    private func validateInputs() -> Bool {
-        if title.isEmpty {
-            alertMessage = "Title Is Required"
-            showAlert = true
-            return false
-        }
-        
-        if startDate < Date.now.startOfDay {
-            alertMessage = "Start Date Cannot Be In The Past"
-            showAlert = true
-            return false
-        }
-        
-        if startTime >= endTime {
-            alertMessage = "Start Time Must Be Before End Time"
-            showAlert = true
-            return false
-        }
-        
-        return true
     }
 }
 
