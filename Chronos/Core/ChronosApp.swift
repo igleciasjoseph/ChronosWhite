@@ -10,15 +10,16 @@ import SwiftData
 
 @main
 struct ChronosApp: App {
+    init() {
+        print(URL.applicationSupportDirectory.path(percentEncoded: false))
+
+    }
+    
     var body: some Scene {
         
         WindowGroup {
             ContentView()
         }
         .modelContainer(for: [IndividualTask.self])
-    }
-    
-    init() {
-        print(URL.applicationSupportDirectory.path(percentEncoded: false))
     }
 }

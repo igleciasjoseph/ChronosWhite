@@ -120,9 +120,9 @@ struct CustomDatePickerView: View {
             .padding(.horizontal)
             
             VStack {
-                if tasks.contains(where: { isSameDay(dateOne: $0.startDate, dateTwo: selectedDate) }) {
+                if tasks.contains(where: { isSameDay(dateOne: $0.startDate ?? Date.now, dateTwo: selectedDate) }) {
                     List {
-                        ForEach(tasks.filter { isSameDay(dateOne: $0.startDate, dateTwo: selectedDate) } .sorted { $0.startDate < $1.startDate }) { task in
+                        ForEach(tasks.filter { isSameDay(dateOne: $0.startDate ?? Date.now, dateTwo: selectedDate) } .sorted { $0.startDate ?? Date.now < $1.startDate ?? Date.now }) { task in
                             TaskItemView(task: task)
                                 .background(.white)
                                 .frame(maxWidth: .infinity)
@@ -170,7 +170,7 @@ struct CustomDatePickerView: View {
                 Spacer()
                 
                 // Check if there's a task on this date
-                if tasks.contains(where: { isSameDay(dateOne: $0.startDate, dateTwo: value.date) }) {
+                if tasks.contains(where: { isSameDay(dateOne: $0.startDate ?? Date.now, dateTwo: value.date) }) {
                     Circle()
                         .fill(isSameDay(dateOne: value.date, dateTwo: selectedDate) ? .white : .gRose)
                         .frame(width: 8)

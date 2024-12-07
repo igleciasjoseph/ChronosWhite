@@ -54,7 +54,7 @@ struct TabBarView: View {
                         if index == 1 {
                             // Filter tasks that have a start date matching today's date
                             let todayTasksCount = tasks.filter { task in
-                                Calendar.current.isDate(task.startDate, inSameDayAs: Date.now)
+                                Calendar.current.isDate(task.startDate ?? Date.now, inSameDayAs: Date.now)
                             }.count
                             
                             Text("\(todayTasksCount) Tasks")
@@ -63,6 +63,8 @@ struct TabBarView: View {
                                 .offset(x: 50, y: -10)
                         }
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .contentShape(Rectangle())
                     
                     if tabSelection == index {
                         Capsule()
@@ -79,10 +81,15 @@ struct TabBarView: View {
                 .frame(width: UIScreen.main.bounds.size.width / 3)
                 .padding(.bottom)
             }
+            .frame(width: UIScreen.main.bounds.size.width / 3, height: 60)
         }
-        .frame(width: UIScreen.main.bounds.size.width / 3, height: 60)
-        .padding(.vertical, 15)
+        .padding(.top, 5)
+        .padding(.bottom, 15)
         .padding(.horizontal, 20)
+        .frame(maxWidth: .infinity)
+        .background(
+            Color.white.ignoresSafeArea()
+        )
     }
 }
 

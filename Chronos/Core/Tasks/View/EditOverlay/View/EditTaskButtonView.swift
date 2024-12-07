@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditOverlayView: View {
+struct EditTaskButtonView: View {
     
     @Binding var task: IndividualTask
     @Binding var title: String
@@ -23,11 +23,19 @@ struct EditOverlayView: View {
     
     let heavyGenerator = UIImpactFeedbackGenerator(style: .heavy)
     
+    @State private var showAlert: Bool = false
+    @State private var alertMessage: String = ""
+    
     var body: some View {
-        ZStack {
             Button {
-                if validateInputs(title: title, taskDescription: taskDescription, startDate: startDate, startTime: startTime, endTime: endTime) {
-                    
+                let validation = TaskInputValidator.validateInputs(
+                    title: title,
+                    startDate: startDate,
+                    startTime: startTime,
+                    endTime: endTime
+                )
+                
+                if validation.isValid {
                     task.title = title
                     task.taskDescription = taskDescription
                     task.startDate = startDate
@@ -39,6 +47,9 @@ struct EditOverlayView: View {
                     heavyGenerator.impactOccurred()
                     
                     dismiss()
+                } else {
+                    alertMessage = validation.errorMessage ?? "Unknown error"
+                    showAlert = true
                 }
             } label: {
                 Image(systemName: "checkmark.circle.fill")
@@ -47,9 +58,11 @@ struct EditOverlayView: View {
                     .foregroundColor(.gRose)
                     .frame(width: 32)
             }
+            .padding(100)
+            .alert(alertMessage, isPresented: $showAlert) {
+                Button("OK", role: .cancel) {}
+            }
         }
-        .padding(15)
-    }
 }
 
 

@@ -19,7 +19,7 @@ struct DailyTaskView: View {
         let today = calendar.startOfDay(for: Date())
         
         return tasks.filter { task in
-            calendar.isDate(calendar.startOfDay(for: task.startDate), inSameDayAs: today)
+            calendar.isDate(calendar.startOfDay(for: task.startDate ?? Date.now), inSameDayAs: today)
         }
     }
     

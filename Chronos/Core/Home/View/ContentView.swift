@@ -20,19 +20,12 @@ struct ContentView: View {
         let transparentAppearence = UITabBarAppearance()
         transparentAppearence.configureWithTransparentBackground()
         UITabBar.appearance().standardAppearance = transparentAppearence
-        
-        for family in UIFont.familyNames {
-            print("Family: \(family)")
-            for font in UIFont.fontNames(forFamilyName: family) {
-                print("Font: \(font)")
-            }
-        }
     }
     
     private var sortedTasks: [IndividualTask] {
         tasks
-            .filter { Calendar.current.isDateInToday($0.startDate) }
-            .sorted(by: { $1.startDate > $0.startDate })
+            .filter { Calendar.current.isDateInToday($0.startDate ?? Date.now) }
+            .sorted(by: { $1.startDate ?? Date.now > $0.startDate ?? Date.now })
     }
     
     var body: some View {
@@ -63,8 +56,8 @@ struct ContentView: View {
 }
 
 #Preview {
-    //    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    //    let container = try! ModelContainer(for: IndividualTask.self, configurations: config)
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: IndividualTask.self, configurations: config)
     
     ContentView()
 }

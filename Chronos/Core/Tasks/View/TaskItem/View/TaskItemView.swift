@@ -15,33 +15,35 @@ struct TaskItemView: View {
     let lightGenerator = UIImpactFeedbackGenerator(style: .light)
     
     var body: some View {
-        HStack(alignment: .center, spacing: 10) {
+        HStack(alignment: .center) {
             
             VStack {
-                Text(task.startTime.hourFormatter())
+                Text((task.startTime ?? Date.now).hourFormatter())
                     .foregroundStyle(.black)
                     .font(.custom("Poppins-Bold", size: 11))
                 
-                Text(task.endTime.hourFormatter())
+                Text((task.endTime ?? Date.now).hourFormatter())
                     .foregroundStyle(.black)
                     .font(.custom("Poppins-Medium", size: 11))
             }
+            .frame(maxWidth: UIScreen.main.bounds.width * 0.15)
             
             Rectangle()
                 .frame(width: 1)
                 .frame(maxHeight: .infinity)
                 .foregroundColor(.gRose)
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.05)
             
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 8) {
-                    Text(task.title)
+                    Text(task.title ?? "")
                         .font(.custom("Poppins-Medium", size: 20))
                         .foregroundStyle(.black)
                         .lineLimit(1)
                     
                     Spacer()
                     
-                    Image(systemName: task.legend)
+                    Image(systemName: task.legend ?? "")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 16, height: 16)
@@ -49,11 +51,12 @@ struct TaskItemView: View {
                 }
             }
             .padding(15)
+            .frame(maxWidth: UIScreen.main.bounds.width * 0.80)
             .background(task.tintColor.opacity(0.7), in: .rect(topLeadingRadius: 15, bottomLeadingRadius: 15))
-            .strikethrough(task.isCompleted, pattern: .solid, color: .black)
+            .strikethrough(task.isCompleted ?? false, pattern: .solid, color: .black)
             .swipeActions(edge: .leading) {
                 Button {
-                    task.isCompleted.toggle()
+                    task.isCompleted!.toggle()
                     lightGenerator.impactOccurred()
                 } label: {
                     Image(uiImage: UIImage(systemName: "checkmark")!.withTintColor(UIColor(task.tintColor), renderingMode: .alwaysOriginal))
