@@ -71,6 +71,7 @@ struct AddTaskView: View {
                             .fill(.contrastGray) // Fill color
                     )
                     .foregroundColor(.black)
+                    .focused($isFocused)
                     
                     TextField("", text: $taskDescription, prompt: Text("Description")
                         .font(.custom("Poppins-MediumItalic", size: 14))
